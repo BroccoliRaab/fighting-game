@@ -4,6 +4,10 @@
 
 #include <SDL2/SDL.h>
 
+#include "events.h"
+#include "update.h"
+#include "draw.h"
+
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
@@ -31,10 +35,19 @@ int main(int argc, char *argv[]){
     const int frameDelay = 1000/120;
 
     uint32_t frameStart;
+    uint32_t frameCount;
     int frameTime;
     int quit = 0;
     while(!quit){
         frameStart = SDL_GetTicks();
+
+        quit = handle_events();
+        
+        update();
+        
+        if (frameCount%2==0)
+            draw();
+        
 
         frameTime = SDL_GetTicks() - frameStart;
         
@@ -42,7 +55,8 @@ int main(int argc, char *argv[]){
     
         while(frameDelay > frameTime){
             frameTime = SDL_GetTicks() - frameStart;
-        };
+        }
+        frameCount++;
     }
     printf("Hello World\n");
     return 1;
