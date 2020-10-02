@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <time.h>
+#include <stdint.h>
 
 #include <SDL2/SDL.h>
 
@@ -27,19 +28,23 @@ int main(int argc, char *argv[]){
 
     SDL_Delay(3000);
     
+    const int frameDelay = 1000/120;
+
+    uint32_t frameStart;
+    int frameTime;
     int quit = 0;
-    int frame = 0;
-    do {
-	    clock_t startTime = clock();
-	    double clocks = CLOCKS_PER_SEC / 120.0;
-	    printf("%u\n", frame);
-	    frame++;
-	    if (frame > 120) {
-		    frame = 0;
-	    }
-	    while(clock() < startTime + clocks);
-    } while(!quit);
-    return 0;
+    while(!quit){
+        frameStart = SDL_GetTicks();
+
+        frameTime = SDL_GetTicks() - frameStart;
+        
+        printf("%u\n", frameTime);
+    
+        if (frameDelay > frameTime) {
+            SDL_Delay(frameDelay - frameTime);
+        }
+            
+    }
 
     printf("Hello World\n");
     return 1;
