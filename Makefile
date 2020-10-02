@@ -1,12 +1,18 @@
 
-MING32_PATH= ../SDL2-2.0.12/i686-w64-mingw32
-MING64_PATH= ../SDL2-2.0.12/x86_64-w64-mingw32
+MINGW32_PATH= ../SDL2-2.0.12/i686-w64-mingw32
+MINGW64_PATH= ../SDL2-2.0.12/x86_64-w64-mingw32
 
-main:
-	gcc -o main main.c -lSDL2main -lSDL2
+SDL2_LIB_ARGS= -lSDL2main -lSDL2
+MINGW_LIB_ARGS = -lmingw32
+
+OUTPUT_POSIX= main
+OUTPUT_WIN= main.exe
+
+$(OUTPUT_POSIX):
+	gcc -o $(OUTPUT_POSIX) *.c $(SDL2_LIB_ARGS)
 
 win64:
-	x86_64-w64-mingw32-gcc -I$(MING64_PATH)/include -L$(MING64_PATH)/lib -o main.exe main.c -lmingw32 -lSDL2main -lSDL2
+	x86_64-w64-mingw32-gcc -I$(MINGW64_PATH)/include -L$(MINGW64_PATH)/lib -o $(OUTPUT_WIN) *.c $(MINGW_LIB_ARGS) $(SDL2_LIB_ARGS)
 
 clean:
-	rm main.exe main
+	rm $(OUTPUT_POSIX) $(OUTPUT_WIN)
