@@ -17,7 +17,7 @@ WIN64_CC= x86_64-w64-mingw32-gcc
 x86_SDL2_DLL= ./bin/SDL32/SDL2.dll
 x64_SDL2_DLL= ./bin/SDL64/SDL2.dll
 
-$(OUTPUT_POSIX): *.c *.h
+posix: *.c *.h
 	mkdir -p $(BUILD_DIR)/posix
 	gcc -o  $(BUILD_DIR)/posix/$(OUTPUT_POSIX) *.c $(SDL2_LIB_ARGS)
 
