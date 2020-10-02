@@ -26,6 +26,20 @@ int main(int argc, char *argv[]){
     main_surface = SDL_GetWindowSurface(main_window);
 
     SDL_Delay(3000);
+    
+    int quit = 0;
+    int frame = 0;
+    do {
+	    clock_t startTime = clock();
+	    double clocks = CLOCKS_PER_SEC / 120.0;
+	    printf("%u\n", frame);
+	    frame++;
+	    if (frame > 120) {
+		    frame = 0;
+	    }
+	    while(clock() < startTime + clocks);
+    } while(!quit);
+    return 0;
 
     printf("Hello World\n");
     return 1;
