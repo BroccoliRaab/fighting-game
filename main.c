@@ -40,12 +40,10 @@ int main(int argc, char *argv[]){
         
         printf("%u\n", frameTime);
     
-        if (frameDelay > frameTime) {
-            SDL_Delay(frameDelay - frameTime);
-        }
-            
+        while(frameDelay > frameTime){
+            frameTime = SDL_GetTicks() - frameStart;
+        };
     }
-
     printf("Hello World\n");
     return 1;
 }
