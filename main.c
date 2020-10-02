@@ -35,7 +35,7 @@ int main(int argc, char *argv[]){
     const int frameDelay = 1000/120;
 
     uint32_t frameStart;
-    uint32_t frameCount;
+    uint32_t frameCount = 0;
     int frameTime;
     int quit = 0;
     while(!quit){
