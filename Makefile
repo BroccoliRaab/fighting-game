@@ -17,18 +17,25 @@ WIN64_CC= x86_64-w64-mingw32-gcc
 x86_SDL2_DLL= ./bin/SDL32/SDL2.dll
 x64_SDL2_DLL= ./bin/SDL64/SDL2.dll
 
+CFLAGS =-DDEBUG -Wpedantic -Wall -Wextra
+RELEASE ?= 0
+ifeq ($(RELEASE), 1)
+    CFLAGS= -DNDEBUG -O2 -w 
+	WIN_CFLAGS= -Wl,-subsystem,windows
+endif
+
 posix: *.c *.h
 	mkdir -p $(BUILD_DIR)/posix
-	gcc -o  $(BUILD_DIR)/posix/$(OUTPUT_POSIX) *.c $(SDL2_LIB_ARGS)
+	gcc $(CFLAGS) -o $(BUILD_DIR)/posix/$(OUTPUT_POSIX) *.c $(SDL2_LIB_ARGS)
 
 win64: *.c *.h
 	mkdir -p $(BUILD_DIR)/win64
-	$(WIN64_CC) -I$(MINGW64_PATH)/include -L$(MINGW64_PATH)/lib -o  $(BUILD_DIR)/win64/$(OUTPUT_WIN) *.c $(MINGW_LIB_ARGS) $(SDL2_LIB_ARGS)
+	$(WIN64_CC) $(CFLAGS) $(WIN_CFLAGS) -I$(MINGW64_PATH)/include -L$(MINGW64_PATH)/lib -o  $(BUILD_DIR)/win64/$(OUTPUT_WIN) *.c $(MINGW_LIB_ARGS) $(SDL2_LIB_ARGS)
 	cp $(x64_SDL2_DLL) $(BUILD_DIR)/win64
 
 win32: *.c *.h
 	mkdir -p $(BUILD_DIR)/win32
-	$(WIN32_CC) -I$(MINGW32_PATH)/include -L$(MINGW32_PATH)/lib -o $(BUILD_DIR)/win32/$(OUTPUT_WIN) *.c $(MINGW_LIB_ARGS) $(SDL2_LIB_ARGS)
+	$(WIN32_CC) $(CFLAGS) $(WIN_CFLAGS )-I$(MINGW32_PATH)/include -L$(MINGW32_PATH)/lib -o $(BUILD_DIR)/win32/$(OUTPUT_WIN) *.c $(MINGW_LIB_ARGS) $(SDL2_LIB_ARGS)
 	cp $(x86_SDL2_DLL) $(BUILD_DIR)/win32
 
 clean:

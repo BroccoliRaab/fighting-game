@@ -11,7 +11,7 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
-Uint32 main(Uint32 argc, char *argv[]){
+int main(int argc, char *argv[]){
     
     SDL_Window *main_window = NULL;
     SDL_Surface *main_surface = NULL;
@@ -32,7 +32,7 @@ Uint32 main(Uint32 argc, char *argv[]){
 
     SDL_Delay(3000);
     
-    const int frameDelay = 1000/120;
+    const Uint32 frameDelay = 1000/120;
 
     Uint32 frameStart;
     Uint32 frameCount = 0;
