@@ -2,6 +2,10 @@
 
 #include <SDL2/SDL.h>
 
+struct[characterState]{
+    uint8_t hitstun = 0;
+}
+
 int handle_events(){
 
     SDL_Event event_handler;
