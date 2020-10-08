@@ -1,16 +1,5 @@
-struct unionStruct{
-    enum{is_uint8, is_double, is_char} type;
-    union {
-        uint8 ival;
-        double dval;
-        char cval;
-    } val;
-}
-
 //Struct of character stats information
 struct charStats{
-    unionStruct charData[22];
-
     
     //Physics characteristics
     double weight;
@@ -35,6 +24,8 @@ struct charStats{
     double jumpAcceleration;
     double doublejumpAcceleration;
     double maxFallSpeed;
+    double fastFallAcceleration;
+    double maxFastFallSpeed;
 
     //Frame data
     uint8 landingLag;
@@ -48,16 +39,6 @@ struct charStats{
     uint8 uairLLag;
     uint8 dairLLag;
     
-
-    /* Present Damon speaking to future Damon, maybe an array
-     * of doubles would be a better method of handling this information
-     * but for now this is how I feel like conceptualizing. This may be
-     * and probably will be changed in the future
-     * 
-     * Also making this an array later will be better because I'll be able
-     * to iterate through in when using loadChar. Really thinking I should
-     * just make all this information in an array. Hmmmmmmm
-    */
       };
 
 //Read character stats and return a struct of said stats 
