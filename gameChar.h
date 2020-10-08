@@ -11,43 +11,43 @@ struct unionStruct{
 struct charStats{
     unionStruct charData[22];
 
-    /*Prototyping of every character trait
-     *
-     *
-     * Physics characteristics
-     * double weight;
-     * double gravity;
     
-     * Grounded horizontal movement characteristics
-     * double maxAirSpeed;
-     * double maxDashSpeed;
-     * double dashAcceleration;
-     * double runAcceleration;
-     * double walkSpeed;
-     * double maxWalkSpeed;
-     * double friction;
+    //Physics characteristics
+    double weight;
+    double gravity;
+    
+    //Grounded horizontal movement characteristics
+    double initialDashSpeed;
+    double maxDashSpeed;
+    double dashAcceleration;
+    double runAcceleration;
 
-     * Aerial horizontal movement characteristics
-     * double maxAirSpeed;
-     * double airAcceleration;
+    double intialWalkSpeed;
+    double maxWalkSpeed;
+    double walkAcceleration;
+    double friction;
 
-     * Aerial vertical movement characteristics
-     * double jumpAcceleration;
-     * double doublejumpAcceleration;
-     * double maxFallSpeed;
+    //Aerial horizontal movement characteristics
+    double maxAirSpeed;
+    double airAcceleration;
 
-     * Frame data
-     * uint8 landingLag;
-     * uint8 jumpSquat;
-     * uint8 dashLength;
+    //Aerial vertical movement characteristics
+    double jumpAcceleration;
+    double doublejumpAcceleration;
+    double maxFallSpeed;
 
-     * Aerial data
-     * uint8 nairLLag;
-     * uint8 fairLLag;
-     * uint8 bairLLag;
-     * uint8 uairLLag;
-     * uint8 dairLLag;
-    */
+    //Frame data
+    uint8 landingLag;
+    uint8 jumpSquat;
+    uint8 dashLength;
+
+    //Aerial data
+    uint8 nairLLag;
+    uint8 fairLLag;
+    uint8 bairLLag;
+    uint8 uairLLag;
+    uint8 dairLLag;
+    
 
     /* Present Damon speaking to future Damon, maybe an array
      * of doubles would be a better method of handling this information
@@ -61,4 +61,4 @@ struct charStats{
       };
 
 //Read character stats and return a struct of said stats 
-struct charStatStruct loadChar(char charText[]);
+struct charStats loadChar(char charText[]);
