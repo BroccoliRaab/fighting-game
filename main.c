@@ -7,6 +7,7 @@
 #include "events.h"
 #include "update.h"
 #include "draw.h"
+#include "animation.h"
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480

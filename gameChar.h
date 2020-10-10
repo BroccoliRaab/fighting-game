@@ -41,5 +41,10 @@ struct charStats{
     
       };
 
+struct character{
+    struct charStats * stats;
+};
 //Read character stats and return a struct of said stats 
 struct charStats loadChar(char charText[]);
+
+
